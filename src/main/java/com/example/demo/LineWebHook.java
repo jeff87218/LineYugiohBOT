@@ -21,7 +21,7 @@ import java.io.IOException;
 @RequestMapping(path = "api/vi/YgoBot")
 public class LineWebHook {
     private String lineid = "";
-    public static final String AccessToken = "Bearer HHIdf30mALSIEZSkyXqFqCn7mneQXvKzyilL143GQMIY4UkfKN5b4Kun1Ng826kExiDGyztgUUyoFPvCQRRNTw5V2PME0bsDxwRmc8RQlIBCxlsN5cfk8He459B3oUG1g4kl6DF/XGHb0LcFH9yRWwdB04t89/1O/w1cDnyilFU=";
+    public static final String AccessToken = "";
     private YGOCARD ygocard;
     private Line line;
 
