@@ -1,18 +1,10 @@
-#spring:
-#  datasource:
-#    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-#    url: jdbc:sqlserver://localhost:1433;databaseName=ygocards
-#    username: sa
-#    password: 963852dddd
-#    platform: mssql
-#  jpa:
-#    show-sql: true
+
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://bhccgpbr8vjy2ni6oqxj-mysql.services.clever-cloud.com:3306/bhccgpbr8vjy2ni6oqxj
-    username: uglsiz4wylmq3tze
-    password: yLz7l7r3K99qdCyOK80g
+    url: 
+    username: 
+    password: 
   jpa:
     hibernate:
       ddl-auto: none
