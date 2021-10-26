@@ -10,7 +10,7 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import javax.security.auth.login.LoginException;
 
 public class DiscordBOT {
-     static String TOKEN="OTAyMTY0ODU1MDg2MjcyNTgy.YXacfg.4FmXgI0HGW_j0IkwOlAIZeLYP0g";
+     static String TOKEN="";
      static JDABuilder BOT = JDABuilder.createDefault(TOKEN);
      static public String prefix;
 
