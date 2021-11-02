@@ -32,6 +32,6 @@ public class Line {
         pushData.setMessages(pushMsg);
         Gson gson = new Gson();
         String PushDataJson = gson.toJson(pushData);
-        target.request(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, LineWebHook.AccessToken).post(Entity.entity(PushDataJson, MediaType.APPLICATION_JSON));
+        target.request(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, LineWebHook.Token).post(Entity.entity(PushDataJson, MediaType.APPLICATION_JSON));
     }
 }

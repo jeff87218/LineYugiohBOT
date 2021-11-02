@@ -1,12 +1,11 @@
 package com.example.demo;
 
 
-import com.example.demo.DiscordSearchCardBOT.DiscordBOT;
 import com.example.demo.LineEntity.WebHookEventData;
-
 import com.example.demo.PushToLine.Line;
 import com.example.demo.SearchForCards.YGOCARD;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +20,14 @@ import java.io.IOException;
 @RequestMapping(path = "api/vi/YgoBot")
 public class LineWebHook {
     private String lineid = "";
-    public static final String AccessToken = "Bearer HHIdf30mALSIEZSkyXqFqCn7mneQXvKzyilL143GQMIY4UkfKN5b4Kun1Ng826kExiDGyztgUUyoFPvCQRRNTw5V2PME0bsDxwRmc8RQlIBCxlsN5cfk8He459B3oUG1g4kl6DF/XGHb0LcFH9yRWwdB04t89/1O/w1cDnyilFU=";
+    public static String Token;
     private YGOCARD ygocard;
     private Line line;
 
+    @Value("${tokens.line}")
+    public void setAccessToken(String LineToken) {
+        Token = LineToken;
+    }
 
 
     @Autowired
@@ -34,7 +37,7 @@ public class LineWebHook {
     }
 
     @PostMapping
-    public void GetLineMsg(@RequestBody WebHookEventData data) throws IOException {
+    public void GetLineMsg(@RequestBody WebHookEventData data) {
         String usermsg = null;
         lineid = data.getEvents().get(0).getSource().getUserId(); //取出line user id
         if (data.getEvents().get(0).getMessage().getType().equals("text")) {
@@ -42,8 +45,10 @@ public class LineWebHook {
         }
         if (usermsg != null) {
             String CardInfo = ygocard.SearchCard(usermsg);
-            //Response to Line
-            line.PushToLine(CardInfo,lineid);
+            if (CardInfo != null) {
+                //Response to Line
+                line.PushToLine(CardInfo, lineid);
+            }
         }
     }
 }
