@@ -24,6 +24,7 @@ public class LineWebHook {
     private YGOCARD ygocard;
     private Line line;
 
+    //LineToken
     @Value("${tokens.line}")
     public void setAccessToken(String LineToken) {
         Token = LineToken;
