@@ -1,4 +1,4 @@
-package com.example.demo.LineEntity;
+package com.example.demo.Entitys.LineEntity;
 
 public class Mentionee {
     private int index;

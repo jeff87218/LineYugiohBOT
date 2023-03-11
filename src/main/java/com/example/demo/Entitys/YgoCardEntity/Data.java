@@ -1,4 +1,4 @@
-package com.example.demo.YgoCardEntity;
+package com.example.demo.Entitys.YgoCardEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

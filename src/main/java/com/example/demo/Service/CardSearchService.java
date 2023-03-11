@@ -1,26 +1,24 @@
-package com.example.demo.SearchForCards;
+package com.example.demo.Service;
 
-import com.example.demo.YgoCardEntity.*;
+import com.example.demo.Entitys.YgoCardEntity.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 
 @Service
-public class YGOCARD {
+public class CardSearchService {
     private DataRepository GetYgoDatas;
     private TextRepository GetYgoTexts;
     private TypeprefixRepository GetYgoType;
 
     @Autowired
-    public YGOCARD(DataRepository getYgoDatas, TextRepository getYgoTexts, TypeprefixRepository getYgoType) {
+    public CardSearchService(DataRepository getYgoDatas, TextRepository getYgoTexts, TypeprefixRepository getYgoType) {
         GetYgoDatas = getYgoDatas;
         GetYgoTexts = getYgoTexts;
         GetYgoType = getYgoType;
@@ -87,27 +85,5 @@ public class YGOCARD {
             return this.SearchCard(cardtextsFIXED.get(0).getId().toString());
         }
     }
-    //圖片找卡，未完成!TODO
-//    public String SearchByImage(String MessageID) {
-//        List<Data> carddatas;
-//        carddatas = GetYgoDatas.findAll();
-//        File img0 = getCardImage.CardImageFromLine(MessageID);
-//        for(int i=0;i<carddatas.size();i++) {
-//            File img1;
-//            try {
-//                 img1 = getCardImage.CardImageFromPicsZip(carddatas.get(i).getId()+"jpg");
-//            }catch (IOException e){
-//                continue;
-//            }
-//            HashingAlgorithm hasher = new PerceptiveHash(32);
-//            Hash hash0 = hasher.hash(img0);
-//            Hash hash1 = hasher.hash(img1);
-//            double similarityScore = hash0.normalizedHammingDistance(hash1);
-//            if(similarityScore<0.6) {
-//                return this.SearchCard(carddatas.get(i).getId()+"");
-//            }
-//        }
-//        return "找不到資料";
-//        return "";
-//    }
+
 }

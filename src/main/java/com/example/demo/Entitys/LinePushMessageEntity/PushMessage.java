@@ -1,4 +1,4 @@
-package com.example.demo.LinePushMessageEntity;
+package com.example.demo.Entitys.LinePushMessageEntity;
 
 public class PushMessage {
     private String type;

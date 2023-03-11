@@ -1,8 +1,8 @@
-package com.example.demo.PushToLine;
+package com.example.demo.Service;
 
-import com.example.demo.LinePushMessageEntity.PushMessage;
-import com.example.demo.LinePushMessageEntity.SendPushData;
-import com.example.demo.LineWebHook;
+import com.example.demo.Entitys.LinePushMessageEntity.PushMessage;
+import com.example.demo.Entitys.LinePushMessageEntity.SendPushData;
+import com.example.demo.Controller.LineWebHookController;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +17,7 @@ import java.util.List;
 
 //將訊息推給LINE的類別
 @Component
-public class Line {
+public class PushToLineService {
     public void PushToLine(String toline, String lineid) {
         String lineurl = "https://api.line.me/v2/bot/message/push";
         Client httpclient = ClientBuilder.newClient();
@@ -32,6 +32,6 @@ public class Line {
         pushData.setMessages(pushMsg);
         Gson gson = new Gson();
         String PushDataJson = gson.toJson(pushData);
-        target.request(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, LineWebHook.Token).post(Entity.entity(PushDataJson, MediaType.APPLICATION_JSON));
+        target.request(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, LineWebHookController.Token).post(Entity.entity(PushDataJson, MediaType.APPLICATION_JSON));
     }
 }

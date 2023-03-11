@@ -1,9 +1,9 @@
-package com.example.demo;
+package com.example.demo.Controller;
 
 
-import com.example.demo.LineEntity.WebHookEventData;
-import com.example.demo.PushToLine.Line;
-import com.example.demo.SearchForCards.YGOCARD;
+import com.example.demo.Entitys.LineEntity.WebHookEventData;
+import com.example.demo.Service.PushToLineService;
+import com.example.demo.Service.CardSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,18 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-
 
 //與LineWebHook連接的類別
 
 @RestController
 @RequestMapping(path = "api/vi/YgoBot")
-public class LineWebHook {
+public class LineWebHookController {
     private String lineid = "";
     public static String Token;
-    private YGOCARD ygocard;
-    private Line line;
+    private CardSearchService cardSearchService;
+    private PushToLineService pushToLineService;
 
     //LineToken
     @Value("${tokens.line}")
@@ -32,9 +30,9 @@ public class LineWebHook {
 
 
     @Autowired
-    public LineWebHook(YGOCARD ygocard, Line line) {
-        this.ygocard = ygocard;
-        this.line = line;
+    public LineWebHookController(CardSearchService cardSearchService, PushToLineService pushToLineService) {
+        this.cardSearchService = cardSearchService;
+        this.pushToLineService = pushToLineService;
     }
 
     @PostMapping
@@ -45,10 +43,10 @@ public class LineWebHook {
             usermsg = data.getEvents().get(0).getMessage().getText();
         }
         if (usermsg != null) {
-            String CardInfo = ygocard.SearchCard(usermsg);
+            String CardInfo = cardSearchService.SearchCard(usermsg);
             if (CardInfo != null) {
                 //Response to Line
-                line.PushToLine(CardInfo, lineid);
+                pushToLineService.PushToLine(CardInfo, lineid);
             }
         }
     }
