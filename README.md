@@ -6,4 +6,4 @@
 
 使用SpringBoot開發
 
-![image](https://github.com/jeff87218/LineAndDiscordYGOBOT/blob/master/YGOBOT.png)
+![image](https://github.com/jeff87218/LineYugiohBOT/raw/master/YGOBOT.png)
